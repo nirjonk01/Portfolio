@@ -179,6 +179,20 @@ section{padding:90px 2rem;}
 .stat-box strong{display:block;font-size:1.1rem;color:var(--accent);}
 .stat-box span{font-size:.68rem;color:var(--text-secondary);}
 
+/* Software Logo Boxes */
+.software-box{
+  background:var(--bg-secondary);border-radius:10px;
+  padding:.65rem;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  height:60px;
+}
+.software-box img{
+  max-width:100%;
+  max-height:40px;
+  object-fit:contain;
+  filter:brightness(1.1);
+}
+
 /* ══════════════════════════════
    ABOUT
 ══════════════════════════════ */
@@ -466,8 +480,13 @@ footer a{color:var(--accent);text-decoration:none;}
         <div class="hero-stats">
           <div class="stat-box"><strong>3D</strong><span>CAD Design</span></div>
           <div class="stat-box"><strong>ME</strong><span>Engineering</span></div>
-          <div class="stat-box"><strong>ML</strong><span>MATLAB</span></div>
-          <div class="stat-box"><strong>KS</strong><span>KeyShot</span></div>
+          <!-- Replaced with MATLAB and KeyShot logos -->
+          <div class="software-box">
+            <img src="matlab.png" alt="MATLAB">
+          </div>
+          <div class="software-box">
+            <img src="keyshot.png" alt="KeyShot">
+          </div>
         </div>
       </div>
     </div>
