@@ -153,13 +153,21 @@ section{padding:90px 2rem;}
 }
 @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
 
+/* Profile Photo Styling */
 .hero-avatar{
   width:90px;height:90px;border-radius:50%;
-  background:var(--gradient);margin:0 auto 1rem;
-  display:flex;align-items:center;justify-content:center;
-  font-size:2.5rem;color:#fff;
+  margin:0 auto 1rem;
+  overflow:hidden;
+  border:3px solid var(--accent);
   box-shadow:0 0 30px rgba(0,212,255,.35);
 }
+.hero-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
 .hero-card h3{font-size:1rem;font-weight:700;margin-bottom:3px;}
 .hero-card .card-title{font-size:.78rem;color:var(--accent);margin-bottom:1.2rem;}
 
@@ -439,7 +447,10 @@ footer a{color:var(--accent);text-decoration:none;}
     </div>
     <div class="hero-visual fade-in">
       <div class="hero-card">
-        <div class="hero-avatar">⚙️</div>
+        <!-- Profile Photo replacing gear icon -->
+        <div class="hero-avatar">
+          <img src="nirjon.jpeg" alt="Md Asif Khan Nirjon">
+        </div>
         <h3>Md Asif Khan Nirjon</h3>
         <p class="card-title">Mechanical Engineering Undergrad</p>
         <div class="hero-stats">
