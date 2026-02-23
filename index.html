@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Asif Khan Nirjon | Mechanical Engineering Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --bg-primary:#0a0e17;
+  --bg-secondary:#0f1524;
+  --bg-card:#131929;
+  --accent:#00d4ff;
+  --accent-dark:#0099bb;
+  --accent-glow:rgba(0,212,255,.15);
+  --text-primary:#e8eaf0;
+  --text-secondary:#8892a4;
+  --border:rgba(0,212,255,.12);
+  --gradient:linear-gradient(135deg,#00d4ff,#0066ff);
+}
+
+html{scroll-behavior:smooth;}
+body{font-family:Poppins,sans-serif;background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;line-height:1.7;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg-primary);}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px;}
+
+/* ── NAVBAR ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:68px;padding:0 2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  backdrop-filter:blur(14px);
+  background:rgba(10,14,23,.9);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow .3s;
+}
+
+.nav-logo{
+  font-weight:700;font-size:1.2rem;text-decoration:none;
+  background:var(--gradient);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+
+.nav-links a{
+  text-decoration:none;font-size:.85rem;font-weight:500;
+  color:var(--text-secondary);position:relative;padding-bottom:4px;transition:color .3s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:2px;background:var(--accent);transition:width .3s;
+}
+.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover::after{width:100%;}
+
+/* Hamburger */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:4px;
+}
+.hamburger span{width:24px;height:2px;background:var(--text-primary);border-radius:2px;transition:all .3s;}
+
+/* ── SHARED SECTION ── */
+section{padding:90px 2rem;}
+.container{max-width:1100px;margin:0 auto;}
+
+.section-header{text-align:center;margin-bottom:3.5rem;}
+.section-label{
+  display:block;font-size:.72rem;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.6rem;
+}
+.section-title{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;}
+.section-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-divider{width:55px;height:3px;background:var(--gradient);border-radius:3px;margin:1rem auto 0;}
+
+/* ── BUTTONS ── */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;border-radius:8px;
+  background:var(--gradient);color:#fff;
+  text-decoration:none;font-weight:600;font-size:.9rem;
+  border:none;cursor:pointer;
+  box-shadow:0 0 20px rgba(0,212,255,.25);
+  transition:opacity .3s,transform .2s,box-shadow .3s;
+}
+.btn-primary:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 6px 30px rgba(0,212,255,.4);}
+
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;border-radius:8px;
+  background:transparent;color:var(--accent);
+  text-decoration:none;font-weight:600;font-size:.9rem;
+  border:1.5px solid var(--accent);cursor:pointer;
+  transition:all .3s;
+}
+.btn-secondary:hover{background:var(--accent-glow);transform:translateY(-2px);}
+
+/* ── FADE IN ── */
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:100px 2rem 60px;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,212,255,.07),transparent 65%);
+}
+
+.hero-grid{
+  max-width:1100px;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:center;
+}
+
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent-glow);border:1px solid var(--border);
+  border-radius:30px;padding:6px 16px;
+  font-size:.75rem;color:var(--accent);font-weight:500;
+  letter-spacing:1px;text-transform:uppercase;margin-bottom:1.2rem;
+}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.3);}}
+
+.hero-title{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.2;margin-bottom:.5rem;}
+.hero-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-subtitle{font-size:.95rem;color:var(--text-secondary);margin-bottom:1.2rem;}
+.hero-desc{font-size:.9rem;color:var(--text-secondary);margin-bottom:2rem;max-width:480px;line-height:1.85;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+
+/* Hero Card */
+.hero-visual{display:flex;justify-content:center;}
+.hero-card{
+  width:300px;background:var(--bg-card);
+  border:1px solid var(--border);border-radius:20px;
+  padding:2rem;text-align:center;
+  box-shadow:0 0 60px rgba(0,212,255,.08);
+  animation:floatY 4s ease-in-out infinite;
+}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+.hero-avatar{
+  width:90px;height:90px;border-radius:50%;
+  background:var(--gradient);margin:0 auto 1rem;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;color:#fff;
+  box-shadow:0 0 30px rgba(0,212,255,.35);
+}
+.hero-card h3{font-size:1rem;font-weight:700;margin-bottom:3px;}
+.hero-card .card-title{font-size:.78rem;color:var(--accent);margin-bottom:1.2rem;}
+
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:1rem;}
+.stat-box{
+  background:var(--bg-secondary);border-radius:10px;
+  padding:.65rem;border:1px solid var(--border);
+}
+.stat-box strong{display:block;font-size:1.1rem;color:var(--accent);}
+.stat-box span{font-size:.68rem;color:var(--text-secondary);}
+
+/* ══════════════════════════════
+   ABOUT
+══════════════════════════════ */
+#about{background:var(--bg-secondary);}
+
+.about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:3.5rem;align-items:start;}
+
+.about-left{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:16px;padding:2rem;
+  position:sticky;top:90px;
+}
+.about-icon-box{
+  width:66px;height:66px;border-radius:14px;
+  background:var(--gradient);display:flex;
+  align-items:center;justify-content:center;
+  font-size:1.7rem;margin-bottom:1rem;
+}
+.about-left h3{font-size:1.1rem;font-weight:700;margin-bottom:3px;}
+.about-left .role{font-size:.8rem;color:var(--accent);margin-bottom:1.2rem;}
+
+.detail-row{display:flex;align-items:flex-start;gap:10px;font-size:.82rem;margin-bottom:.6rem;}
+.detail-row i{color:var(--accent);margin-top:3px;width:14px;flex-shrink:0;}
+.detail-row span{color:var(--text-secondary);}
+.detail-row strong{color:var(--text-primary);}
+
+.about-right p{font-size:.93rem;color:var(--text-secondary);margin-bottom:1.2rem;line-height:1.85;}
+.about-right p strong{color:var(--accent);}
+
+/* ══════════════════════════════
+   SKILLS
+══════════════════════════════ */
+#skills{background:var(--bg-primary);}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem;}
+
+.skill-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:14px;padding:1.7rem;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.skill-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,212,255,.1);border-color:rgba(0,212,255,.35);}
+
+.skill-card-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--accent-glow);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:var(--accent);margin-bottom:.9rem;
+}
+.skill-card h3{font-size:.9rem;font-weight:600;margin-bottom:.9rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.45rem;}
+.skill-tag{
+  font-size:.75rem;padding:4px 11px;
+  background:var(--bg-secondary);color:var(--text-secondary);
+  border:1px solid var(--border);border-radius:20px;transition:all .2s;
+}
+.skill-tag:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-glow);}
+
+/* ══════════════════════════════
+   PROJECTS
+══════════════════════════════ */
+#projects{background:var(--bg-secondary);}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.8rem;}
+
+.project-card{
+  background:var(--bg-card);border-radius:16px;
+  border:1px solid var(--border);overflow:hidden;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 16px 50px rgba(0,212,255,.12);border-color:rgba(0,212,255,.3);}
+
+/* Image container */
+.project-img{
+  width:100%;height:200px;overflow:hidden;
+  position:relative;background:#0a1628;
+}
+.project-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .4s ease;display:block;
+}
+.project-card:hover .project-img img{transform:scale(1.05);}
+
+/* Video container */
+.project-video{
+  width:100%;height:200px;position:relative;overflow:hidden;
+}
+.project-video iframe{
+  width:100%;height:100%;border:none;display:block;
+}
+
+.project-badge{
+  position:absolute;top:12px;right:12px;
+  background:rgba(10,14,23,.85);backdrop-filter:blur(6px);
+  border:1px solid var(--border);border-radius:6px;
+  padding:4px 10px;font-size:.7rem;color:var(--accent);font-weight:500;
+  z-index:2;
+}
+
+.project-body{padding:1.4rem;}
+.project-body h3{font-size:1rem;font-weight:700;margin-bottom:.6rem;}
+.project-body p{font-size:.83rem;color:var(--text-secondary);line-height:1.75;margin-bottom:1.1rem;}
+
+.project-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem;}
+.tool-badge{
+  font-size:.72rem;padding:4px 10px;
+  background:var(--bg-secondary);color:var(--accent);
+  border:1px solid rgba(0,212,255,.2);border-radius:5px;font-weight:500;
+}
+
+/* ══════════════════════════════
+   STRENGTHS
+══════════════════════════════ */
+#strengths{background:var(--bg-primary);}
+
+.strengths-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1.3rem;}
+
+.strength-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:14px;padding:1.7rem 1.3rem;text-align:center;
+  transition:all .3s;
+}
+.strength-card:hover{border-color:var(--accent);box-shadow:0 0 30px rgba(0,212,255,.1);transform:translateY(-4px);}
+.strength-num{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:.7rem;opacity:.7;}
+.strength-icon{font-size:1.9rem;color:var(--accent);display:block;margin-bottom:.7rem;}
+.strength-card h3{font-size:.88rem;font-weight:600;}
+
+/* ══════════════════════════════
+   RESUME
+══════════════════════════════ */
+#resume{background:var(--bg-secondary);}
+
+.resume-box{
+  max-width:660px;margin:0 auto;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:20px;padding:3rem;text-align:center;
+}
+.resume-icon{
+  width:68px;height:68px;border-radius:16px;
+  background:var(--gradient);display:flex;
+  align-items:center;justify-content:center;
+  font-size:1.9rem;color:#fff;margin:0 auto 1.4rem;
+}
+.resume-box h3{font-size:1.3rem;font-weight:700;margin-bottom:.6rem;}
+.resume-box p{font-size:.88rem;color:var(--text-secondary);margin-bottom:2rem;line-height:1.75;}
+
+/* ══════════════════════════════
+   CONTACT
+══════════════════════════════ */
+#contact{background:var(--bg-primary);}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start;}
+
+.contact-info h3{font-size:1.3rem;font-weight:700;margin-bottom:.7rem;}
+.contact-info p{font-size:.88rem;color:var(--text-secondary);margin-bottom:1.8rem;line-height:1.8;}
+
+.contact-links{display:flex;flex-direction:column;gap:.9rem;}
+.contact-link{
+  display:flex;align-items:center;gap:13px;
+  text-decoration:none;padding:.9rem 1.1rem;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:12px;transition:all .3s;color:var(--text-primary);
+}
+.contact-link:hover{border-color:var(--accent);background:var(--accent-glow);transform:translateX(4px);}
+.contact-link-icon{
+  width:36px;height:36px;border-radius:9px;
+  background:var(--accent-glow);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);font-size:.95rem;flex-shrink:0;
+}
+.contact-link-text small{display:block;font-size:.7rem;color:var(--text-secondary);}
+.contact-link-text strong{font-size:.85rem;}
+
+.contact-form{display:flex;flex-direction:column;gap:1rem;}
+.form-group{display:flex;flex-direction:column;gap:.35rem;}
+.form-group label{font-size:.78rem;font-weight:500;color:var(--text-secondary);}
+.form-group input,.form-group textarea{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:10px;padding:11px 15px;
+  color:var(--text-primary);font-family:Poppins,sans-serif;font-size:.86rem;
+  outline:none;transition:border-color .3s;
+}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);}
+.form-group textarea{resize:vertical;min-height:115px;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg-secondary);
+  border-top:1px solid var(--border);
+  padding:2rem;text-align:center;
+}
+.footer-logo{
+  font-size:1.05rem;font-weight:700;margin-bottom:.4rem;
+  background:var(--gradient);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;
+}
+footer p{font-size:.78rem;color:var(--text-secondary);}
+footer a{color:var(--accent);text-decoration:none;}
+
+/* ══════════════════════════════
+   MOBILE
+══════════════════════════════ */
+@media(max-width:768px){
+  .hamburger{display:flex;}
+  .nav-links{
+    position:fixed;top:68px;left:0;right:0;
+    flex-direction:column;align-items:center;gap:0;
+    background:rgba(10,14,23,.97);backdrop-filter:blur(14px);
+    max-height:0;overflow:hidden;
+    transition:max-height .4s ease,padding .4s;
+    border-bottom:1px solid var(--border);
+  }
+  .nav-links.open{max-height:400px;padding:1rem 0;}
+  .nav-links li{width:100%;text-align:center;}
+  .nav-links a{display:block;padding:13px 0;font-size:.93rem;}
+
+  .hero-grid{grid-template-columns:1fr;text-align:center;}
+  .hero-visual{order:-1;}
+  .hero-card{width:270px;}
+  .hero-btns{justify-content:center;}
+  .hero-desc{margin:0 auto 2rem;}
+
+  .about-grid{grid-template-columns:1fr;}
+  .about-left{position:static;}
+
+  .contact-grid{grid-template-columns:1fr;}
+  section{padding:70px 1.2rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">Md Asif Khan Nirjon</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#strengths">Strengths</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="fade-in">
+      <div class="hero-tag"><span class="dot"></span> Open to Opportunities</div>
+      <h1 class="hero-title">Hi, I'm <span class="accent">Md Asif Khan Nirjon</span></h1>
+      <p class="hero-subtitle">Mechanical Engineering Undergraduate</p>
+      <p class="hero-desc">
+        Passionate about mechanical design, data-driven engineering, and innovative product development.
+        I design functional systems in SOLIDWORKS and analyze engineering data using MATLAB.
+      </p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#projects"><i class="fas fa-rocket"></i> View Projects</a>
+        <a class="btn-secondary" href="#resume"><i class="fas fa-download"></i> Download Resume</a>
+        <a class="btn-secondary" href="#contact"><i class="fas fa-envelope"></i> Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-in">
+      <div class="hero-card">
+        <div class="hero-avatar">⚙️</div>
+        <h3>Md Asif Khan Nirjon</h3>
+        <p class="card-title">Mechanical Engineering Undergrad</p>
+        <div class="hero-stats">
+          <div class="stat-box"><strong>3D</strong><span>CAD Design</span></div>
+          <div class="stat-box"><strong>ME</strong><span>Engineering</span></div>
+          <div class="stat-box"><strong>ML</strong><span>MATLAB</span></div>
+          <div class="stat-box"><strong>KS</strong><span>KeyShot</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">Who I Am</span>
+      <h2 class="section-title">About <span>Me</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-left fade-in">
+        <div class="about-icon-box">👨‍🔧</div>
+        <h3>Md Asif Khan Nirjon</h3>
+        <p class="role">Mechanical Engineer</p>
+        <div class="detail-row"><i class="fas fa-graduation-cap"></i>
+          <div><strong>B.Sc. Mechanical Engineering</strong><br><span>Undergraduate · Bangladesh</span></div>
+        </div>
+        <div class="detail-row"><i class="fas fa-map-marker-alt"></i>
+          <div><strong>Bangladesh</strong></div>
+        </div>
+        <div class="detail-row"><i class="fas fa-tools"></i>
+          <div><span>SOLIDWORKS · MATLAB · KeyShot</span></div>
+        </div>
+      </div>
+      <div class="about-right fade-in">
+        <p>
+          I am currently pursuing a <strong>Bachelor's degree in Mechanical Engineering</strong> in Bangladesh.
+          I have a strong academic and practical interest in mechanical system design, product development,
+          and data-driven engineering analysis.
+        </p>
+        <p>
+          I develop detailed <strong>3D models and assemblies</strong> using SOLIDWORKS and create realistic
+          product visualizations using KeyShot. Alongside design work, I perform engineering data analysis
+          using <strong>MATLAB</strong>, allowing me to approach problems quantitatively and make informed technical decisions.
+        </p>
+        <p>
+          I also utilize <strong>Adobe Photoshop and Illustrator</strong> to create professional engineering
+          presentations and project documentation — combining technical depth with clean visual communication.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">What I Know</span>
+      <h2 class="section-title">Technical <span>Skills</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-drafting-compass"></i></div>
+        <h3>Mechanical Design & CAD</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">SOLIDWORKS</span>
+          <span class="skill-tag">3D Modeling</span>
+          <span class="skill-tag">Assembly Design</span>
+          <span class="skill-tag">Technical Drawing</span>
+          <span class="skill-tag">Exploded View</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Data Analysis & Computation</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">Data Analysis</span>
+          <span class="skill-tag">Data Visualization</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-cube"></i></div>
+        <h3>Rendering & Visualization</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">KeyShot</span>
+          <span class="skill-tag">Adobe Photoshop</span>
+          <span class="skill-tag">Adobe Illustrator</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-file-alt"></i></div>
+        <h3>Documentation & Productivity</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Word</span>
+          <span class="skill-tag">Microsoft Excel</span>
+          <span class="skill-tag">PowerPoint</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">What I've Built</span>
+      <h2 class="section-title">My <span>Projects</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="projects-grid">
+
+      <!-- Project 1 — Spray Machine (real image) -->
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <img src="spray-machine.jpg" alt="Agricultural Spray Machine Design">
+          <span class="project-badge">CAD · KeyShot</span>
+        </div>
+        <div class="project-body">
+          <h3>Agricultural Spray Machine Design</h3>
+          <p>
+            A fully functional agricultural spraying system designed in SOLIDWORKS with detailed component
+            modeling and structured part relationships. Realistic rendering completed in KeyShot for
+            professional product presentation.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">SOLIDWORKS</span>
+            <span class="tool-badge">KeyShot</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 — YouTube Video -->
+      <div class="project-card fade-in">
+        <div class="project-video">
+          <iframe
+            src="https://www.youtube.com/embed/yQLffE06U0A"
+            title="Mechanical Assembly Animation"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <span class="project-badge">Animation</span>
+        </div>
+        <div class="project-body">
+          <h3>Mechanical Assembly Animation</h3>
+          <p>
+            A detailed mechanical assembly animation showcasing precise component modeling,
+            constrained part relationships, and realistic motion visualization created in SOLIDWORKS.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">SOLIDWORKS</span>
+            <span class="tool-badge">Animation</span>
+            <span class="tool-badge">Assembly Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 — MATLAB -->
+      <div class="project-card fade-in">
+        <div class="project-img" style="display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-wave-square" style="font-size:3.5rem;color:var(--accent);opacity:.45;"></i>
+          <span class="project-badge">MATLAB</span>
+        </div>
+        <div class="project-body">
+          <h3>Engineering Data Analysis</h3>
+          <p>
+            A MATLAB-based data analysis project involving engineering datasets — structured data processing,
+            statistical evaluation, and clear visualization outputs for informed engineering decision-making.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">MATLAB</span>
+            <span class="tool-badge">Data Visualization</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ STRENGTHS ══ -->
+<section id="strengths">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">What Sets Me Apart</span>
+      <h2 class="section-title">Core <span>Strengths</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="strengths-grid">
+      <div class="strength-card fade-in">
+        <div class="strength-num">01</div>
+        <span class="strength-icon"><i class="fas fa-brain"></i></span>
+        <h3>Analytical Problem Solving</h3>
+      </div>
+      <div class="strength-card fade-in">
+        <div class="strength-num">02</div>
+        <span class="strength-icon"><i class="fas fa-database"></i></span>
+        <h3>Data-Driven Engineering Approach</h3>
+      </div>
+      <div class="strength-card fade-in">
+        <div class="strength-num">03</div>
+        <span class="strength-icon"><i class="fas fa-sitemap"></i></span>
+        <h3>Structured Mechanical Design Thinking</h3>
+      </div>
+      <div class="strength-card fade-in">
+        <div class="strength-num">04</div>
+        <span class="strength-icon"><i class="fas fa-chalkboard-teacher"></i></span>
+        <h3>Professional Project Presentation</h3>
+      </div>
+      <div class="strength-card fade-in">
+        <div class="strength-num">05</div>
+        <span class="strength-icon"><i class="fas fa-microscope"></i></span>
+        <h3>Continuous Learning & Research-Oriented Mindset</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESUME ══ -->
+<section id="resume">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">My Background</span>
+      <h2 class="section-title">Download <span>Resume</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="resume-box fade-in">
+      <div class="resume-icon"><i class="fas fa-file-pdf"></i></div>
+      <h3>Md Asif Khan Nirjon — Resume</h3>
+      <p>
+        Download my resume to learn more about my academic background, technical skills,
+        and engineering experience — including CAD projects, MATLAB analysis, and design coursework.
+      </p>
+      <a class="btn-primary" href="resume.pdf" download="Md_Asif_Khan_Nirjon_Resume.pdf">
+        <i class="fas fa-download"></i> Download Resume (PDF)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">Contact <span>Me</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <h3>Let's work together</h3>
+        <p>
+          Whether you have a project in mind, want to discuss engineering ideas,
+          or have an opportunity to share — feel free to reach out anytime.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:nirjonk01@gmail.com" class="contact-link">
+            <div class="contact-link-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-link-text"><small>Email</small><strong>nirjonk01@gmail.com</strong></div>
+          </a>
+          <a href="https://github.com/nirjonk01" target="_blank" class="contact-link">
+            <div class="contact-link-icon"><i class="fab fa-github"></i></div>
+            <div class="contact-link-text"><small>GitHub</small><strong>github.com/nirjonk01</strong></div>
+          </a>
+          <a href="https://www.linkedin.com/in/md-asif-khan-nirjon-me-hstu/" target="_blank" class="contact-link">
+            <div class="contact-link-icon"><i class="fab fa-linkedin"></i></div>
+            <div class="contact-link-text"><small>LinkedIn</small><strong>linkedin.com/in/md-asif-khan-nirjon-me-hstu</strong></div>
+          </a>
+          <a href="https://www.fiverr.com/asif_nirjon" target="_blank" class="contact-link">
+            <div class="contact-link-icon"><i class="fas fa-briefcase"></i></div>
+            <div class="contact-link-text"><small>Fiverr</small><strong>fiverr.com/asif_nirjon</strong></div>
+          </a>
+        </div>
+      </div>
+      <div class="fade-in">
+        <form class="contact-form" action="https://formsubmit.co/nirjonk01@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Portfolio Contact!">
+          <input type="hidden" name="_captcha" value="false">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" name="name" id="name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" id="subject" placeholder="Project Inquiry" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Md Asif Khan Nirjon</div>
+    <p>Mechanical Engineering Undergraduate · Bangladesh</p>
+    <p style="margin-top:.5rem">© 2025 Md Asif Khan Nirjon · Built with <span style="color:var(--accent)">♥</span></p>
+  </div>
+</footer>
+
+<script>
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const navLinks   = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// Fade-in
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+fadeEls.forEach(el => observer.observe(el));
+
+// Active nav highlight
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+  });
+  document.getElementById('navbar').style.boxShadow =
+    window.scrollY > 30 ? '0 4px 30px rgba(0,0,0,.4)' : 'none';
+});
+</script>
+</body>
+</html>
